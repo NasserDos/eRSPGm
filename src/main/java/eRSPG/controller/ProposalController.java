@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.annotation.Retention;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -146,7 +147,9 @@ public class ProposalController {
 		model.addAttribute("contentPage",contentPage);
 		return "projectIndex";
 	}
-	
+
+
+
 	@RequestMapping(value="/proposal/budget", method=RequestMethod.POST)
 	public String saveProposalBudget(@ModelAttribute @Valid BudgetForm detailForm, BindingResult result,Model model, @RequestParam("nextPage") String nextPage)
 	{
