@@ -1,8 +1,9 @@
 package eRSPG.model.form;
 
+import eRSPG.model.Proposal;
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class DetailForm {
+public class DetailForm  extends BaseForm{
 
 	@NotEmpty(message="Please enter a proposal title")
 	private String proposalTitle;
@@ -55,6 +56,14 @@ public class DetailForm {
 		this.projectDirector = projectDirector;
 	}
 
+	@Override
+	public void saveToProposal(Proposal proposal){
+		proposal.setProjectDirector(projectDirector);
+		proposal.setProposalTitle(proposalTitle);
+		proposal.setProposalEmail(proposalEmail);
+		proposal.setProposalMailCode(proposalMailCode);
+		proposal.setProposalExtension(proposalExtension);
 
+	}
 	
 }

@@ -10,28 +10,12 @@
 	<legend><h2 style="text-align:center;">RSPG Proposal Submission</h2></legend>
 
 	<div class="text-center">
-			<form action="<%
-							String firstName = request.getParameter("firstName");
-							String lastName = request.getParameter("lastName");
-							String userEmail = request.getParameter("userEmail");
-
-							user.setFirstName(firstName);
-							user.setLastName(lastName);
-							user.setEmail(userEmail);
-							System.out.println("First: " +" "+ user.getFirstName() + " " + "Last: " +" "+
-								user.getLastName() + " " + "Email: " +" "+ user.getEmail() + " " + "Id: " + user.getUserId());
-
-							User aUser = new User();
-							aUser.setFirstName(firstName);
-							aUser.setLastName(lastName);
-							aUser.setEmail(userEmail);
-							System.out.println("First: " +" "+ aUser.getFirstName() + " " + "Last: " +" "+
-								aUser.getLastName() + " " + "Email: " +" "+ aUser.getEmail() + " " + "Id: " + aUser.getUserId());
-						%>"
+			<form action="start"
 				  method="post" encrypt="text/plain">
 
 				<label for="firstName" style="align-content: center"> First Name:&nbsp </label>
-				<input id="firstName" type="text" name="firstName" value="" style="align-self: center;" /><br /><br />
+				<input id="firstName" type="text" name="firstName" style="align-self: center;" /><br /><br />
+
 
 				<label for="lastName" style="alignment: center"> Last Name:&nbsp </label>
 				<input id="lastName" type="text" name="lastName" value="" style="align-self: center;" /><br /><br />

@@ -5,10 +5,11 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+import eRSPG.model.Proposal;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
-public class AwardTypeForm {
+public class AwardTypeForm extends BaseForm{
 	
 	@NotNull(message="Please select a project type")
 	private int projectTypeID;
@@ -34,6 +35,9 @@ public class AwardTypeForm {
 		this.awardTypes = awardTypes;
 	}
 	
-	
+	@Override
+	public void saveToProposal(Proposal proposal){
+
+	}
 
 }

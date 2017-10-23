@@ -48,9 +48,9 @@
         <input type="hidden" name="nextPage" id="nextPage" value="0"/>
 
         <div class="button-row">
-            <button type="button" class="btn my-btn pull-right" onclick='setNextPage("proposal/department", "/")'>Next
+            <button type="button" class="btn my-btn pull-right" onclick='setNextPwage("proposal/department", "/")'>Next
             </button>
-            <button type="button" class="btn my-btn pull-center" onclick='setNextPage("proposal/detail", "/")'>Save
+            <button type="submit"  class="btn my-btn pull-center">Save
             </button>
         </div>
     </form:form>

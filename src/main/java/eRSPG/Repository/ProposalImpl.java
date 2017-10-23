@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.annotations.Persister;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +15,7 @@ import eRSPG.model.Proposal;
 
 @Repository
 public class ProposalImpl implements ProposalDAO {
+
 	@Autowired
 	private SessionFactory sessionFactory;
 	
@@ -54,5 +57,18 @@ public class ProposalImpl implements ProposalDAO {
 	public void deleteProposal(Proposal p){
 		sessionFactory.getCurrentSession().delete(p);
 	}
+
+	@Transactional
+	public Proposal findIncompletePorposalByUserId(int userId){
+
+		Proposal p =  (Proposal) sessionFactory.getCurrentSession()
+				.createCriteria(Proposal.class)
+				.add(Restrictions.eq("proposalComplete",0))
+				.add(Restrictions.eq("userID",userId))
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
+		return p;
+	}
+
 	
 }
