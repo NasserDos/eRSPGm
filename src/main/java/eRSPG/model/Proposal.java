@@ -63,7 +63,7 @@ public class Proposal {
 	private String proposalParticipants;
 
 	@Column(name="userID")
-	private Integer userId;
+	private int userId;
 
 	public String getProposalParticipants() {
 		return proposalParticipants;
