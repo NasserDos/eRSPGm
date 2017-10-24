@@ -3,6 +3,7 @@ package eRSPG.model.form;
 import java.util.ArrayList;
 import java.util.List;
 
+import eRSPG.model.Proposal;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import eRSPG.model.EssayAnswer;
@@ -10,7 +11,7 @@ import eRSPG.model.EssayAnswer;
 /**
  * Models the form inputs for the proposal body.
  */
-public class BodyQuestionsForm {
+public class BodyQuestionsForm extends BaseForm {
 
     @NotEmpty(message="Please enter your answer to the question")
     private String q1;
@@ -26,6 +27,9 @@ public class BodyQuestionsForm {
     private String q6;
     @NotEmpty(message="Please enter your answer to the question")
     private String q7;
+
+
+
 
     public String getQ1() {
         return q1;

@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.validation.Valid;
 
@@ -14,6 +15,8 @@ import eRSPG.UniversalRepo;
 import eRSPG.model.*;
 import eRSPG.model.form.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Role;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -67,7 +70,8 @@ public class ProposalController {
 	@Autowired
 	private UserDAO userDAO;
 
-
+//instead of this line, find a proposal by userID that hasnt been completed,
+// otherwise make a new proposal. (the proposals should be inside the requests)
 	private Proposal proposal;
 	
 	final String uploadDirectory = "C:/eRSPG/fileAttachments/"; //directory that store file attachments
@@ -75,10 +79,6 @@ public class ProposalController {
 	public String getNextPage(@RequestParam("nextPage") String nextPage) {
 		return nextPage;
 	}
-
-
-
-
 
 
 	@RequestMapping(value = "/proposal", method = RequestMethod.GET)
@@ -99,7 +99,8 @@ public class ProposalController {
 	@RequestMapping("/proposal/start")
 	public String startSubmission(Model model)
 	{
-		//temp
+
+
 		User user = userDAO.findUserById(1);
 
 		DepartmentForm deptForm = new DepartmentForm();
@@ -118,8 +119,9 @@ public class ProposalController {
 
 			//Proposal proposal = proposalDao.findIncompletePorposalByUserId(user.getUserId());
 
-			proposal = proposalDao.findProposal(1);
+			//proposal = proposalDao.findProposal(1);
 
+            proposal = proposalDao.findIncompletePorposalByUserId(user.getUserId());
 
 			UniversalRepo.setDept(proposal,deptForm);
 			UniversalRepo.setDetail(proposal,detailForm);

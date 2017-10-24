@@ -53,11 +53,7 @@ public class BodyDetailsForm extends BaseForm{
     public void setBudgetNarrative(String budgetNarrative) {
         this.budgetNarrative = budgetNarrative;
     }
-    
-    @Override
-    public void saveToProposal(Proposal proposal){
 
-    }
 
     private EssayAnswer generateAnswer(String response, int essayQuestionID)
     {

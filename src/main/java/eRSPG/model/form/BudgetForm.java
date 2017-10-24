@@ -6,10 +6,12 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import eRSPG.model.Fund;
+import eRSPG.model.Proposal;
 
 
-public class BudgetForm {
+public class BudgetForm  extends BaseForm{
 	
 	@NotNull(message="Please select if you wish to fund student assistants for this proposal")
 	private boolean studentAssistants;
@@ -17,6 +19,8 @@ public class BudgetForm {
 	public boolean getStudentAssistants() {
 		return studentAssistants;
 	}
+
+
 
 	public void setStudentAssistants(boolean studentAssistants) {
 		this.studentAssistants = studentAssistants;

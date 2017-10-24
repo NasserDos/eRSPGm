@@ -1,6 +1,8 @@
 package eRSPG.model.form;
 
 import javax.validation.constraints.NotNull;
+
+import eRSPG.model.Proposal;
 import org.hibernate.validator.constraints.*;
 
 public class UserForm extends BaseForm{
@@ -13,6 +15,7 @@ public class UserForm extends BaseForm{
 
     @NotNull
     private String userEmail;
+
 
     public String getFirstName() {
         return firstName;

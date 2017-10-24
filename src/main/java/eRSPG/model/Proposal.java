@@ -17,7 +17,9 @@ public class Proposal {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="proposalID")
 	private int proposalId;
-	
+
+
+
 	@Column(name="proposalTitle")
 	private String proposalTitle;
 	
@@ -59,7 +61,10 @@ public class Proposal {
 	
 	@Column(name="proposalParticipants")
 	private String proposalParticipants;
-	
+
+	@Column(name="userID")
+	private Integer userId;
+
 	public String getProposalParticipants() {
 		return proposalParticipants;
 	}
@@ -182,6 +187,14 @@ public class Proposal {
 
 	public void setUpdatedDate(LocalDateTime updatedDate) {
 		this.updatedDate = updatedDate;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 }
 

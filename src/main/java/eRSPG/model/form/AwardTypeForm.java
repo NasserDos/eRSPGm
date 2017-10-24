@@ -35,9 +35,6 @@ public class AwardTypeForm extends BaseForm{
 		this.awardTypes = awardTypes;
 	}
 	
-	@Override
-	public void saveToProposal(Proposal proposal){
 
-	}
 
 }

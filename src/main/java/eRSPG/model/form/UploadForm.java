@@ -3,15 +3,21 @@ package eRSPG.model.form;
 import java.util.ArrayList;
 import java.util.List;
 
+import eRSPG.model.Proposal;
 import org.springframework.web.multipart.MultipartFile;
 
 import eRSPG.model.UploadFile;
 
-public class UploadForm {
+public class UploadForm  extends BaseForm{
 	private MultipartFile fileUpload;
 	private String name;
 	private byte[] bytes;
-	
+
+	@Override
+	public void saveToProposal(Proposal proposal){
+
+	}
+
 
 	public byte[] getBytes() {
 		return bytes;

@@ -63,9 +63,9 @@ public class ProposalImpl implements ProposalDAO {
 
 		Proposal p =  (Proposal) sessionFactory.getCurrentSession()
 				.createCriteria(Proposal.class)
-				.add(Restrictions.eq("proposalComplete",0))
-				.add(Restrictions.eq("userID",userId))
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+				.add(Restrictions.eq("userId",userId))
+				.add(Restrictions.eq("proposalComplete",false))
+				.uniqueResult();
 
 		return p;
 	}
