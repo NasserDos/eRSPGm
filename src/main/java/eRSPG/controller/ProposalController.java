@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import eRSPG.UniversalRepo;
 import eRSPG.model.*;
 import eRSPG.model.form.*;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Role;
 import org.springframework.security.access.annotation.Secured;
@@ -70,9 +71,6 @@ public class ProposalController {
 	@Autowired
 	private UserDAO userDAO;
 
-//instead of this line, find a proposal by userID that hasnt been completed,
-// otherwise make a new proposal. (the proposals should be inside the requests)
-	private Proposal proposal;
 	
 	final String uploadDirectory = "C:/eRSPG/fileAttachments/"; //directory that store file attachments
 	
@@ -121,7 +119,7 @@ public class ProposalController {
 
 			//proposal = proposalDao.findProposal(1);
 
-            proposal = proposalDao.findIncompletePorposalByUserId(user.getUserId());
+            Proposal proposal = proposalDao.findIncompletePorposalByUserId(user.getUserId());
 
 			UniversalRepo.setDept(proposal,deptForm);
 			UniversalRepo.setDetail(proposal,detailForm);
@@ -498,8 +496,10 @@ public class ProposalController {
 		
 	}
 
-	public void rememberProposal(BaseForm bf){
-		bf.saveToProposal(proposal);
+	public void rememberProposal(BaseForm baseForm){
+		User user = userDAO.findUserById(1);
+		Proposal proposal = proposalDao.findIncompletePorposalByUserId(user.getUserId());
+		baseForm.saveToProposal(proposal);
 		proposalDao.addNewOrUpdateProposal(proposal);
 	}
 
