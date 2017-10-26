@@ -71,7 +71,7 @@ public class ProposalController {
 	@Autowired
 	private UserDAO userDAO;
 
-	
+
 	final String uploadDirectory = "C:/eRSPG/fileAttachments/"; //directory that store file attachments
 	
 	public String getNextPage(@RequestParam("nextPage") String nextPage) {
@@ -183,7 +183,7 @@ public class ProposalController {
 
 
 	@RequestMapping(value="/proposal/budget", method=RequestMethod.POST)
-	public String saveProposalBudget(@ModelAttribute @Valid BudgetForm detailForm, BindingResult result,Model model, @RequestParam("nextPage") String nextPage)
+	public String saveProposalBudget(@ModelAttribute @Valid BudgetForm budgetForm, BindingResult result,Model model, @RequestParam("nextPage") String nextPage)
 	{
 		if(result.hasErrors())
 		{
@@ -263,7 +263,7 @@ public class ProposalController {
 	}
 	
 	@RequestMapping(value="/proposal/detail", method=RequestMethod.POST)
-	public String proposalForm(@ModelAttribute @Valid DetailForm detailForm, BindingResult result,Model model, @RequestParam("nextPage") String nextPage)
+	public String saveProposalForm(@ModelAttribute @Valid DetailForm detailForm, BindingResult result,Model model, @RequestParam("nextPage") String nextPage)
 	{
 		if(result.hasErrors())
 		{
@@ -274,7 +274,7 @@ public class ProposalController {
 		//return "redirect:/proposal/awardType";
 
 
-		return "redirect:/" + "proposal/detail";
+		return "redirect:/" + nextPage;
 	}
 	
 	@RequestMapping(value="/proposal/awardType", method=RequestMethod.GET)
@@ -477,20 +477,15 @@ public class ProposalController {
 	}
 	
 	
-	@RequestMapping("/proposal/submit")
-	public @ResponseBody String submit(@ModelAttribute("detailForm") DetailForm detailForm,
-						@ModelAttribute("awardTypeForm") AwardTypeForm awardForm,
-						@ModelAttribute("bodyForm") BodyForm bodyForm,
-						@ModelAttribute("budgetForm") BudgetForm budgetForm,
-						@ModelAttribute("departmentForm") DepartmentForm deptForm,
-						@ModelAttribute("bodyQuestionsForm") BodyQuestionsForm bodyQuestForm,
-						@ModelAttribute("bodyDetailsForm") BodyDetailsForm bodyDetailsForm,
-						@ModelAttribute("userForm") UserForm userForm,
-						@ModelAttribute("uploadForm") UploadForm uploadForm)
+	@RequestMapping(value="/proposal/submit", method=RequestMethod.POST)
+	public @ResponseBody String submit()
 	{
-		
-		processSubmission(detailForm, awardForm, bodyForm, budgetForm,deptForm, bodyQuestForm, bodyDetailsForm
-							, userForm, uploadForm);
+
+
+		User user = userDAO.findUserById(1);
+		Proposal proposal = proposalDao.findIncompletePorposalByUserId(user.getUserId());
+		proposal.setProposalComplete(true);
+		proposalDao.addNewOrUpdateProposal(proposal);
 		return "Successfully Submitted";
 		
 		
